@@ -3,6 +3,7 @@
 
 import glib
 import os
+import time
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 
@@ -13,6 +14,8 @@ def print_notification(bus, message):
   if len(args) == 8:
     notification = dict([(keys[i], args[i]) for i in range(8)])
     if all( ["PomoDoneApp" in notification["summary"], "STOP!" in notification["body"]] ):
+      os.popen('spd-say "be calm, screen is locking"')
+      time.sleep(2)
     	os.popen('gnome-screensaver-command --lock')
     print notification["summary"], notification["body"]
 

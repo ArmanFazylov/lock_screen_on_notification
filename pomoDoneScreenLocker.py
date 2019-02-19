@@ -16,7 +16,7 @@ def print_notification(bus, message):
     if all( ["PomoDoneApp" in notification["summary"], "STOP!" in notification["body"]] ):
       os.popen('spd-say "be calm, screen is locking"')
       time.sleep(2)
-    	os.popen('gnome-screensaver-command --lock')
+      os.popen('gnome-screensaver-command --lock')
     print notification["summary"], notification["body"]
 
 loop = DBusGMainLoop(set_as_default=True)
